@@ -20,6 +20,42 @@ CREATE TABLE IF NOT EXISTS species (
     name TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS vets (
+    id  SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    age INT NOT NULL,
+    date_of_graduation DATE
+);
+
+CREATE TABLE IF NOT EXISTS specializations (
+    species_id INT NOT NULL,
+    vets_id INT NOT NULL,
+
+    PRIMARY KEY(species_id, vets_id),
+    CONSTRAINT fk_species_specializations
+        FOREIGN KEY(species_id)
+            REFERENCES species(id),
+    CONSTRAINT fk_vets_specializations
+        FOREIGN KEY(vets_id)
+            REFERENCES vets(id)
+);
+
+CREATE TABLE IF NOT EXISTS visits (
+    animals_id INT NOT NULL,
+    vets_id INT NOT NULL,
+    date_of_visit DATE NOT NULL,
+
+    PRIMARY KEY(animals_id, vets_id, date_of_visit),
+    CONSTRAINT fk_animals_visits
+        FOREIGN KEY(animals_id)
+            REFERENCES animals(id)
+            ON DELETE CASCADE,
+    CONSTRAINT fk_vets_visits
+        FOREIGN KEY(vets_id)
+            REFERENCES vets(id)
+            ON DELETE CASCADE
+);
+
 -- modify animals table
 ALTER TABLE animals ADD COLUMN species text;
 ALTER TABLE animals DROP COLUMN id;
