@@ -41,11 +41,11 @@ CREATE TABLE IF NOT EXISTS specializations (
 );
 
 CREATE TABLE IF NOT EXISTS visits (
+    id INT GENERATE ALWAYS AS IDENTITY,
     animals_id INT NOT NULL,
     vets_id INT NOT NULL,
     date_of_visit DATE NOT NULL,
 
-    PRIMARY KEY(animals_id, vets_id, date_of_visit),
     CONSTRAINT fk_animals_visits
         FOREIGN KEY(animals_id)
             REFERENCES animals(id)
@@ -65,3 +65,6 @@ ALTER TABLE animals ADD COLUMN species_id INT;
 ALTER TABLE animals ADD COLUMN owners_id INT;  
 ALTER TABLE animals ADD CONSTRAINT fk_species_animals FOREIGN KEY (species_id) REFERENCES species(id);
 ALTER TABLE animals ADD CONSTRAINT fk_owners_animals FOREIGN KEY (owners_id) REFERENCES owners(id);
+
+-- modify owners table 
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
