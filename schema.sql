@@ -69,4 +69,6 @@ ALTER TABLE animals ADD CONSTRAINT fk_owners_animals FOREIGN KEY (owners_id) REF
 -- modify owners table 
 ALTER TABLE owners ADD COLUMN email VARCHAR(120);
 
-CREATE INDEX owners_email_DESC ON owners(email DESC); 
+CREATE INDEX owners_email_DESC ON owners(email DESC);
+CREATE INDEX visits_vets_desc ON visits (vets_id DESC, id, animals_id, date_of_visits);
+CREATE INDEX vists_animals_asc ON vists (animals_id ASC, id, vets_id, date_of_visit); 
