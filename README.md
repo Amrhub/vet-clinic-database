@@ -1,6 +1,9 @@
 # Vet Clinic
+This is a vet clinic database using PostgreSQL where we store data about animals: their (name, species, netured, birthdate, and escape attempts), vets: (name, age, graduation date, speciality), owners: (name, age, animals they own), and we also save visits records.
 
-This is the first milestone, where I create animals table insert some examples of data, and query it.
+## Schema Diagram
+![vet clinic schema](https://user-images.githubusercontent.com/87689547/150171655-f42147eb-cb95-4b2b-9f5e-9731879c20c7.png)
+
 
 ## Author
 
